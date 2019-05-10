@@ -135,7 +135,7 @@ Resources:
     CreationPolicy:
       ResourceSignal:
         Count: "1"
-        Timeout: PT5M
+        Timeout: PT3M
     Properties:
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", AMALINUX2]
       InstanceType: t2.micro
@@ -161,7 +161,7 @@ Resources:
           setupec2:
             - "configureCFN"
             - "installdocker"
-            - "runcontainerapp"
+            - "runweatherapp"
         configureCFN:
           files:
             /etc/cfn/hooks.d/cfn-auto-reloader.conf:
@@ -203,10 +203,17 @@ Resources:
               docker:
                 enabled: "true"
                 ensureRunning: "true"
-        runcontainerapp:
+        runweatherapp:
+          sources:
+            /home/ec2-user: "https://github.com/krisrad/dock-cont-lab/archive/master.zip"
           commands:
-            01_run_container:
-              command: "docker container run -d --expose 3000 -p 80:80 nginx"
+            00_permissions:
+              command: "chmod 755 /home/ec2-user/dock-cont-lab-master/ -R"
+            01_build_image:
+              cwd: "/home/ec2-user/dock-cont-lab-master"
+              command: "docker image build -t krisrad/budgety-app:v1 -f 01-run-nginx-webapp/Dockerfile ."
+            02_run_container:
+              command: "docker container run -d --name budgety-app-1 -p 80:80 krisrad/budgety-app:v1"
 Outputs:
   ec2pubIp:
     Description: Public IP address of EC2 instance
