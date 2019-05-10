@@ -211,9 +211,9 @@ Resources:
               command: "chmod 755 /home/ec2-user/dock-cont-lab-master/ -R"
             01_build_image:
               cwd: "/home/ec2-user/dock-cont-lab-master"
-              command: "docker image build -t krisrad/weather-app:v1 -f 02-run-node-webapp/Dockerfile ."
+              command: "docker image build -t krisrad/my-websites:v1 -f 01-run-nginx-websites/Dockerfile ."
             02_run_container:
-              command: "docker container run -d --name weather-app-1 -p 80:3000 krisrad/weather-app:v1"
+              command: "docker container run -d --name my-websites-1 -p 80:80 krisrad/my-websites:v1"
 Outputs:
   ec2pubIp:
     Description: Public IP address of EC2 instance
