@@ -132,10 +132,10 @@ Resources:
           Value: !Join ["-", [!Ref "AWS::StackName", "ec2", "sec", "grp"]]
   ec2Instance:
     Type: AWS::EC2::Instance
-    # CreationPolicy:
-    #   ResourceSignal:
-    #     Count: "1"
-    #     Timeout: PT1M
+    CreationPolicy:
+      ResourceSignal:
+        Count: "1"
+        Timeout: PT3M
     Properties:
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", AMALINUX2]
       InstanceType: t2.micro
