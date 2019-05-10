@@ -210,8 +210,8 @@ Resources:
             00_permissions:
               command: "chmod 755 /home/ec2-user/dock-cont-lab-master/ -R"
             01_build_image:
-              cwd: "/home/ec2-user/dock-cont-lab-master/02-weather-app"
-              command: "docker image build -t krisrad/weather-app:v1 ."
+              cwd: "/home/ec2-user/dock-cont-lab-master"
+              command: "docker image build -t krisrad/weather-app:v1 -f 02-weather-app/Dockerfile ."
             02_run_container:
               command: "docker container run -d --name weather-app-1 -p 80:3000 krisrad/weather-app:v1"
 Outputs:
