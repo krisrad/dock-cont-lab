@@ -43,6 +43,6 @@ services:
       - weather_app
 
 networks:
-  frontent:
+  frontend:
   weather_app:
     internal: true
