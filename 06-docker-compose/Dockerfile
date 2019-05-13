@@ -1,6 +1,6 @@
 FROM node AS build
 RUN mkdir -p /var/node
-ADD 00-apps/weather-app /var/node/
+ADD weather-app /var/node/
 WORKDIR /var/node
 RUN npm install
 

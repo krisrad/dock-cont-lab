@@ -13,10 +13,10 @@ Mappings:
 Resources:
   ec2Instance:
     Type: AWS::EC2::Instance
-    CreationPolicy:
-      ResourceSignal:
-        Count: "1"
-        Timeout: PT3M
+    # CreationPolicy:
+    #   ResourceSignal:
+    #     Count: "1"
+    #     Timeout: PT3M
     Properties:
       ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", AMALINUX2]
       InstanceType: t2.micro
@@ -99,7 +99,7 @@ Resources:
               command: "chmod 755 /home/ec2-user/dock-cont-lab-master/ -R"
             01_docker-compose-up:
               cwd: "/home/ec2-user/dock-cont-lab-master"
-              command: "docker-compose up -d -f 06-docker-compose/docker-compose"            
+              command: "docker-compose -f 06-docker-compose/docker-compose.yml up -d"
 Outputs:
   ec2pubIp:
     Description: Public IP address of EC2 instance

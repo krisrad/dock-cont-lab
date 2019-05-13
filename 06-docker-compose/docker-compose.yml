@@ -5,7 +5,7 @@ services:
       context: .
       args:
         - VERSION=v2.0
-      ports:
-        - 80:3000
-      environment:
-        -NODE_ENV=production
+    ports:
+      - 80:3000
+    environment:
+      - NODE_ENV=production
