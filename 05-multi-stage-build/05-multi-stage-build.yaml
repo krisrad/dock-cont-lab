@@ -94,7 +94,7 @@ Resources:
               cwd: "/home/ec2-user/dock-cont-lab-master"
               command: "docker image build -t krisrad/weather-app:multi-stage-build --rm --build-arg VERSION=1.5 -f 05-multi-stage-build/Dockerfile ."
             02_run_container:
-              command: "docker container run -d --name weather-app-1 -p 80:80 krisrad/weather-app:multi-stage-build"
+              command: "docker container run -d --name weather-app-1 -p 80:3000 krisrad/weather-app:multi-stage-build"
 Outputs:
   ec2pubIp:
     Description: Public IP address of EC2 instance
