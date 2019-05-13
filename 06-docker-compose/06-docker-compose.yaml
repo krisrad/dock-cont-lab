@@ -43,6 +43,7 @@ Resources:
             - "configureCFN"
             - "installdocker"
             - "installdockercompose"
+            - "rundockercomposeapp"
         configureCFN:
           files:
             /etc/cfn/hooks.d/cfn-auto-reloader.conf:
@@ -90,6 +91,15 @@ Resources:
               command: "curl -L https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose"
             01_permissions:
               command: "chmod +x /usr/local/bin/docker-compose"
+        rundockercomposeapp:
+          sources:
+            /home/ec2-user: "https://github.com/krisrad/dock-cont-lab/archive/master.zip"
+          commands:
+            00_permissions:
+              command: "chmod 755 /home/ec2-user/dock-cont-lab-master/ -R"
+            01_docker-compose-up:
+              cwd: "/home/ec2-user/dock-cont-lab-master"
+              command: "docker-compose up -d -f 06-docker-compose/docker-compose"            
 Outputs:
   ec2pubIp:
     Description: Public IP address of EC2 instance
