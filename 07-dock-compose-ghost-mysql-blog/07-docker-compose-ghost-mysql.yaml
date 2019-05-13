@@ -99,7 +99,7 @@ Resources:
               command: "chmod 755 /home/ec2-user/dock-cont-lab-master/ -R"
             01_docker-compose-up:
               cwd: "/home/ec2-user/dock-cont-lab-master"
-              command: "docker-compose -f 06-docker-compose/docker-compose.yml up -d"
+              command: "docker-compose -f 07-dock-compose-ghost-mysql-blog/docker-compose.yml up -d"
 Outputs:
   ec2pubIp:
     Description: Public IP address of EC2 instance
