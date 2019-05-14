@@ -92,9 +92,9 @@ Resources:
               command: "chmod 755 /home/ec2-user/dock-cont-lab-master/ -R"
             01_build_image:
               cwd: "/home/ec2-user/dock-cont-lab-master/dbd-04-dockerize-node-app"
-              command: "docker image build -t krisrad/nodejs-app:v1 ."
+              command: "docker image build -t krisrad/baconator:dev ."
             02_run_container:
-              command: "docker container run -d --name nodejs-app-v1 -p 80:8081 krisrad/nodejs-app:v1"
+              command: "docker container run -d --name nodejs-app-v1 -p 80:8081 krisrad/baconator:dev"
 Outputs:
   ec2pubIp:
     Description: Public IP address of EC2 instance
